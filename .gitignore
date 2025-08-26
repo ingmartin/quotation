@@ -1,0 +1,8 @@
+.python-version
+.mypy_cache
+.pyc
+__pycache__
+
+# System files
+.DS_Store
+Thumbs.db
