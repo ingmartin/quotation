@@ -1,0 +1,64 @@
+{% extends "base.html" %} {% block content %}
+<section class="card span-12">
+  <h3>{% if object %}Редактировать цитату{% else %}Добавить цитату{% endif %}</h3>
+  <form class="form" action="#" method="post">
+    {% csrf_token %}
+    <label>
+      Текст
+      <textarea
+        name="text"
+        class="input"
+        rows="4"
+        placeholder="Введите текст цитаты…">{{ form.text.value|default_if_none:"" }}</textarea>
+      {% if form.text.errors %}
+      <div class="error">{{ form.text.errors }}</div>
+      {% endif %}
+    </label>
+    <div class="row">
+      <label>
+        Источник
+        <input
+          list="source_list"
+          name="source_name"
+          id="id_source"
+          value="{{ source_name|default_if_none:'' }}"
+          class="form-control input"
+        />
+        <datalist id="source_list">
+          {% for source in sources %}
+          <option value="{{ source.name }}">{% endfor %}</option>
+        </datalist>
+
+        {% if form.source_name.errors %}
+        <div class="error">{{ form.source_name.errors }}</div>
+        {% endif %}
+      </label>
+      <label>
+        Вес
+        <input
+          type="number"
+          min="1"
+          value="3"
+          class="input"
+          id="id_weight"
+          name="weight"
+          value="{{ form.weight.value|default_if_none:1 }}"
+          min="1"
+          max="10"
+          class="form-control"
+        />
+        {% if form.weight.errors %}
+        <div class="error">{{ form.weight.errors }}</div>
+        {% endif %}
+      </label>
+    </div>
+    <div class="help">
+      Лимит на источник — максимум 3 цитаты.
+    </div>
+    <div class="toolbar">
+      <button class="btn primary" type="submit">Сохранить</button>
+      <a href="/" class="btn ghost" type="reset">Сбросить</a>
+    </div>
+  </form>
+</section>
+{% endblock content %}

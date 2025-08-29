@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quotation book</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo">Q</div>
+                <div>
+                    <div class="title"><a href="/" class="nav-link">Quotation Book</a></div>
+                    <div class="subtitle">technical assignment</div>
+                </div>
+            </div>
+
+            <ul class="nav">
+                <li><a href="/">Случайная цитата</a></li>
+                <li><a href="/add/">Добавить цитату</a></li>
+                <li><a href="/list/">Все цитаты</a></li>
+                <li><a href="/dashboard/">Дашбоард</a></li>
+            </ul>
+
+            <div style="height: 24px"></div>
+            <div class="chip">Лимит на источник: <strong>&nbsp;{{ SOURCE_QUOTE_LIMIT }}</strong></div>
+        </aside>
+
+        <!-- Main -->
+        <main class="main">
+            <div class="grid">
+                {% block content %}{% endblock content %}
+            </div>
+        </main>
+        <div class="footer">
+            Technical assignment for 1C‑Bitrix by Ingvar Martin.
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+{% extends "base.html" %} {% block content %}
+<section class="card span-6">
+    <h3> Топ цитат по просмотрам</h3>
+    <ol>
+        {% for quote in quotes.hits %}
+        <li>
+            «{{ quote.text }}»<br>
+            <span class="muted">
+                {{ quote.views }} просмотров
+            </span>
+        </li>
+        {% empty %}
+        <li>Нет цитат</li>
+        {% endfor %}
+    </ol>
+</section>
+<section class="card span-6">
+    <h3> Топ редких цитат</h3>
+    <ol>
+        {% for quote in quotes.rare %}
+        <li>
+            «{{ quote.text }}»<br>
+            <span class="muted">
+                {{ quote.views }} просмотров
+            </span>
+        </li>
+        {% empty %}
+        <li>Нет цитат</li>
+        {% endfor %}
+    </ol>
+</section>
+<section class="card span-6">
+    <h3> Топ залайканых цитат</h3>
+    <ol>
+        {% for quote in quotes.liked %}
+        <li>
+            «{{ quote.text }}»<br>
+            <span class="muted">
+                {{ quote.likes }} лайков
+            </span>
+        </li>
+        {% empty %}
+        <li>Нет цитат</li>
+        {% endfor %}
+    </ol>
+</section>
+<section class="card span-6">
+    <h3> Топ задизлайканых цитат</h3>
+    <ol>
+        {% for quote in quotes.disliked %}
+        <li>
+            «{{ quote.text }}»<br>
+            <span class="muted">
+                {{ quote.dislikes }} дизлайков
+            </span>
+        </li>
+        {% empty %}
+        <li>Нет цитат</li>
+        {% endfor %}
+    </ol>
+</section>
+{% endblock content %}

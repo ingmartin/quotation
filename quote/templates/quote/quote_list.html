@@ -1,0 +1,95 @@
+{% extends "base.html" %} {% block content %}
+<section class="card span-12">
+  <h3>Записи</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Текст</th>
+        <th>Категория</th>
+        <th>Вес</th>
+        <th title="Количество просмотров">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+        </th>
+        <th title="Количество лайков">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M14 9V5a3 3 0 0 0-6 0v4" />
+            <path
+              d="M5 9h14l-1.34 8a2 2 0 0 1-2 2H8.34a2 2 0 0 1-2-1.72L5 9z"
+            />
+          </svg>
+        </th>
+        <th title="Количество дизлайков">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M10 15v4a3 3 0 0 0 6 0v-4" />
+            <path
+              d="M19 15H5l1.34-8a2 2 0 0 1 2-2h7.32a2 2 0 0 1 2 1.72L19 15z"
+            />
+          </svg>
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for quote in quotes %}
+      <tr>
+        <td>{{ quote.id }}</td>
+        <td>«{{ quote.text }}»</td>
+        <td>{{ quote.source }}</td>
+        <td>{{ quote.weight }}</td>
+        <td>{{ quote.views }}</td>
+        <td>{{ quote.likes }}</td>
+        <td>{{ quote.dislikes }}</td>
+        <td></td>
+        <td>
+          <div class="toolbar">
+            <a class="btn" href="/update/{{ quote.id }}/">Редактировать</a>
+            <a class="btn danger" href="/delete/{{ quote.id }}/">Удалить</a>
+          </div>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="8">Нет цитат</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock content %}

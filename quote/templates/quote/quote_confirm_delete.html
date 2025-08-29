@@ -1,0 +1,9 @@
+{% extends "base.html" %} {% block content %}
+<section class="card span-12">
+  <h3>Удалить цитату?</h3>
+<p>{{ object.text }}</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn primary">Да, удалить</button> <a href="{% url 'quote_list' %}" class="btn ghost">Отмена</a>
+</form>
+{% endblock content %}

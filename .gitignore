@@ -2,6 +2,8 @@
 .mypy_cache
 .pyc
 __pycache__
+migrations
+db.sqlite3
 
 # System files
 .DS_Store
