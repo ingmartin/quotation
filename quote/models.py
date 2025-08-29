@@ -24,8 +24,6 @@ class Quote(models.Model):
         return f'"{self.text}" - {self.author}'
 
     def presave(self):
-        print(f"Debug: Starting clean method for Quote {self.__dict__}")
-
         max_count = settings.SOURCE_QUOTE_LIMIT
         if Quote.objects.filter(source=self.source).exclude(pk=self.pk).count() >= max_count:
             raise ValidationError(f"Максимум {max_count} записей для категории {self.source}")
